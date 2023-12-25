@@ -29,12 +29,16 @@
 
           <ul>
             <a href="">Home</a>
-            <a id="foods" href="#food">Food</a>
-            <a id="dishes" href="#dishe">Best Dishes</a>
+            <a id="foods" href="#restaurants">Food</a>
             <a id="orders" href="#order">Track Order</a>
+            <a id="cart"><span>0</span> Cart</a>
             <button id="log">Log In</button>
           </ul>
         </nav>
+
+        <!-- cart -->
+
+        <div class="cart-modal"></div>
 
         <!-- log in  -->
         <div id="logPage">
@@ -63,11 +67,13 @@
               placeat <br />
               expedita voluptatibus nam consequuntur provident corporis.
             </p>
-            <button> <a id="orders" href="#category">Order Now</a></button>
+            <button><a id="orders" href="#category">Order Now</a></button>
           </div>
           <!-- <img src="mainimg.jpg" alt=""> -->
         </div>
       </div>
+
+      <!-- test restaurant list -->
 
       <!-- category -->
       <div class="category" id="category">
@@ -75,189 +81,134 @@
           <h1>Our Popular <span>Categories</span></h1>
         </div>
         <div class="category-list">
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img5.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Burger</p>
-          </div>
-         </div>
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img5.jpg" alt="" />
+            </div>
 
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img1.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Pizza</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img2.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Fries</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img3.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Cakes</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img4.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Chinese</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img6.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Pasta</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img1.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Maggi</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img4.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Biryani</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img3.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Momos</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img6.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Chicken</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img2.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Rice</p>
-          </div>
-         </div>
-
-         <div class="card-wrap">
-          <div class="left-col">
-        <img class="img" src="img4.jpg" alt="">
-          </div>
-          
-          <div class="right-col">
-         <p>Sandwich</p>
-          </div>
-         </div>
-        </div>
-      </div>
-
-      <!-- cards -->
-      <div class="food" id="food">
-        <div class="head">
-          <h1>Our Popular <span>Menu</span></h1>
-        </div>
-        <div class="crd">
-          <div class="card">
-            <img src="img1.jpg" alt="" />
-            <div class="cardText">
-              <h2>Butter Paneer</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-              <button>Order Now</button>
+            <div class="right-col">
+              <p>Burger</p>
             </div>
           </div>
-          <div class="card">
-            <img src="img2.jpg" alt="" />
-            <div class="cardText">
-              <h2>Butter Paneer</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-              <button>Order Now</button>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img1.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Pizza</p>
             </div>
           </div>
-          <div class="card">
-            <img src="img3.jpg" alt="" />
-            <div class="cardText">
-              <h2>Butter Paneer</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-              <button>Order Now</button>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img2.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Fries</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img3.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Cakes</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img4.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Chinese</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img6.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Pasta</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img1.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Maggi</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img4.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Biryani</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img3.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Momos</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img6.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Chicken</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img2.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Rice</p>
+            </div>
+          </div>
+
+          <div class="card-wrap">
+            <div class="left-col">
+              <img class="img" src="img4.jpg" alt="" />
+            </div>
+
+            <div class="right-col">
+              <p>Sandwich</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="food" id="food2">
-        <div class="crd">
-          <div class="card">
-            <img src="img4.jpg" alt="" />
-            <div class="cardText">
-              <h2>Samosa</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-              <button>Order Now</button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="img5.jpg" alt="" />
-            <div class="cardText">
-              <h2>Burger</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-              <button>Order Now</button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="img6.jpg" alt="" />
-            <div class="cardText">
-              <h2>Finger Chips</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-              <button>Order Now</button>
-            </div>
-          </div>
-        </div>
+      <div class="head">
+        <h1>Our Popular <span>Restaurants</span></h1>
       </div>
+
+      <!-- restaurant list -->
+      <div class="restaurants" id="restaurants"></div>
 
       <!-- track Order -->
 
@@ -273,23 +224,6 @@
           </div>
           <img src="map.webp" alt="" />
         </div>
-      </div>
-
-      <!-- tracking -->
-      <div class="imgs">
-        <div class="imgText">
-          <h1>Live Order Tracking</h1>
-          <br />
-          <h2>Fast Delivery</h2>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing <br />
-            elit. Aperiam, in? Rerum culpa cumque repellendus <br />
-            ullam officia aspernatur provident eos labore <br />
-            similique quaerat.
-          </p>
-        </div>
-        <img src="tracking.png" alt="" />
       </div>
 
       <!-- footer -->
