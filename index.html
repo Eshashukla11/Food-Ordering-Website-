@@ -31,14 +31,19 @@
             <a href="">Home</a>
             <a id="foods" href="#restaurants">Food</a>
             <a id="orders" href="#order">Track Order</a>
-            <a id="cart"><span>0</span> Cart</a>
+            <a id="cart"><span class="cart-item-qty">0</span> Cart</a>
             <button id="log">Log In</button>
           </ul>
         </nav>
 
         <!-- cart -->
 
-        <div class="cart-modal"></div>
+        <div class="cart-modal">
+          <!-- Inside the cart modal -->
+<div class="cart-total">
+  Total: <span id="totalPrice">0.00</span>
+</div>
+        </div>
 
         <!-- log in  -->
         <div id="logPage">

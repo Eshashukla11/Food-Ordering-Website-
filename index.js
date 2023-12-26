@@ -307,45 +307,157 @@ function closeModal() {
   modal.parentNode.removeChild(modal);
 }
 
+
+
 function addToCart() {
-  let addBtn = document.querySelectorAll(".add-item")
+  let addBtn = document.querySelectorAll(".add-item");
 
   addBtn.forEach((button) => {
-    button.addEventListener("click",function(event) {
+    button.addEventListener("click", function (event) {
       let parentNodeOfCurrentBtn = event.target.parentNode;
-      let itemName =  parentNodeOfCurrentBtn.querySelector(".item-div span").textContent
-      let itemPrice = parentNodeOfCurrentBtn.querySelector(
-        ".item-div span:nth-child(2)"
-      ).textContent;
+      let itemName = parentNodeOfCurrentBtn.querySelector(".item-div span").textContent;
+      let itemPrice = parentNodeOfCurrentBtn.querySelector(".item-div span:nth-child(2)").textContent;
+      let cartQty = document.querySelector(".cart-item-qty");
 
       let item = {
         itemName,
-       itemPrice
+        itemPrice,
+        quantity: 1 // Set default quantity to 1
+      };
+
+      // Check if the item already exists in the cart
+      if (isItemInCart(itemName)) {
+        alert("This item is already in the cart!");
+      } else {
+        cart.push(item);
+        cartQty.textContent = cart.length
+        console.log(cart);
+        document.dispatchEvent(new Event("cart-item-added"));
       }
-      cart.push(item)
-      // console.log(cart)
-    })
-  })
+    });
+  });
 }
 
-let flag = 0;
-   let cartBtn = document.querySelector("#cart");
-   let cartModal = document.querySelector(".cart-modal");
-   cartBtn.addEventListener("click", function () {
-     console.log("cart clicked");
-    //  cartModal.classList.toggle("show-cart");
-    if(flag == 0) {
-       cartModal.classList.add("show-cart");
-       console.log("modal is opened")
-       console.log(cart)
-       flag = 1
-    } else {
-       cartModal.classList.remove("show-cart");
-      console.log("modal is closed");
-      flag=0
-    }
-   });
+function isItemInCart(itemName) {
+  return cart.some((cartItem) => cartItem.itemName === itemName);
+}
 
+
+let flag = 0;
+let cartBtn = document.querySelector("#cart");
+let cartModal = document.querySelector(".cart-modal");
+let cartItemsList = document.createElement("ul");
+cartItemsList.classList.add("cart-items-list");
+
+function updateCart() {
+      let cartQty = document.querySelector(".cart-item-qty");
+  cartItemsList.innerHTML = ""; // Clear the list before adding items
+  cart.forEach((cartItem, index) => {
+    let item = document.createElement("li");
+    item.classList.add("cart-item");
+
+    let itemNameDiv = document.createElement("div");
+    let itemQuantityDiv = document.createElement("div");
+    let itemPriceDiv = document.createElement("div");
+    let nameSpan = document.createElement("span");
+    let quantitySpan = document.createElement("span");
+    let priceSpan = document.createElement("span");
+
+    // Item name
+    nameSpan.textContent = cartItem.itemName;
+    itemNameDiv.appendChild(nameSpan);
+
+    // Item quantity
+   let minusButton = document.createElement("button");
+   minusButton.textContent = "-";
+   minusButton.addEventListener("click", function () {
+     if (cartItem.quantity > 1) {
+       // Decrease quantity
+       cartItem.quantity--;
+       quantitySpan.textContent = cartItem.quantity;
+       recalculateTotal();
+     } else {
+       // Remove item from the cart when quantity becomes 0
+       cart.splice(index, 1); // Remove the item from the cart array
+       updateCart(); // Update the cart display
+        cartQty.textContent = cart.length;
+       recalculateTotal();
+     }
+   });
+   itemQuantityDiv.appendChild(minusButton);
+    
+    quantitySpan.textContent = cartItem.quantity;
+    itemQuantityDiv.appendChild(quantitySpan);
+
+    let plusButton = document.createElement("button");
+    plusButton.textContent = "+";
+    plusButton.addEventListener("click", function() {
+      cartItem.quantity++;
+      quantitySpan.textContent = cartItem.quantity;
+      recalculateTotal();
+    });
+    itemQuantityDiv.appendChild(plusButton);
+
+    // Item price (assuming fixed price for simplicity, you can modify this as per your need)
+    priceSpan.textContent = cartItem.itemPrice;
+    itemPriceDiv.appendChild(priceSpan);
+
+    item.appendChild(itemNameDiv);
+    item.appendChild(itemQuantityDiv);
+    item.appendChild(itemPriceDiv);
+    cartItemsList.appendChild(item);
+  });
+
+  let totalDiv = document.createElement("div");
+  totalDiv.textContent = "Total: \u20B9 0.00"; // Using '\u20B9' for the Indian Rupee symbol
+  totalDiv.id = "total-price";
+  cartModal.appendChild(cartItemsList);
+}
+
+function recalculateTotal() {
+  let totalPrice = cart.reduce((total, cartItem) => {
+    let price = parseFloat(cartItem.itemPrice.replace("₹", "")); // Remove the currency symbol
+    return total + price * cartItem.quantity;
+  }, 0);
+
+  // Assuming you have a function to format the price in the desired currency format
+  let formattedPrice = formatPrice(totalPrice);
+
+  // Update the total price displayed to the user
+  document.getElementById("totalPrice").textContent = formattedPrice;
+}
+
+// Function to format price in INR currency format (assuming "total" is in INR)
+function formatPrice(total) {
+  return "₹" + total.toFixed(2); // Format the total as ₹X.XX
+}
+
+// Event listener for adding items to the cart
+document.addEventListener("cart-item-added", () => {
+  updateCart();
+  recalculateTotal();
+});
+
+cartBtn.addEventListener("click", function () {
+  console.log("cart clicked");
+  if (flag === 0) {
+    flag = 1;
+    cartModal.classList.add("show-cart");
+    console.log("modal is opened");
+
+    updateCart(); // Show the current cart items
+  } else {
+    flag = 0;
+    cartModal.classList.remove("show-cart");
+    console.log("modal is closed");
+  }
+});
+
+// Call addToCart function to set up the event listeners for adding items
+addToCart();
+
+
+// now i also want to display the price of total value of cart items which shoul be displayed in cart modal also if we change the quantiy the price should also update in real time in cart there are can be many items
 function getMenuItemById(event,restaurantData) {
 let currentCard = event.currentTarget.closest(".card");
 let currentId = currentCard.querySelector("span").textContent;

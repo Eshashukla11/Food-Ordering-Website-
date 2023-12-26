@@ -257,7 +257,7 @@ background-color: rgb(229, 22, 22);
     height: 400px;
   padding: 30px;
     display: none;
-    z-index: 10;
+    z-index: 50;
     color: black;
 }
 
@@ -315,13 +315,83 @@ background-color: rgb(229, 22, 22);
     width: 400px;
     height: 450px;
     border-radius: 12px;
-    background-color: brown;
+    background-color: white;
     display: none;
 }
 
 .show-cart {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
+
+.cart-items-list {
+    /* background-color: yellow; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.cart-item {
+    padding: 10px;
+    list-style-type: none;
+    color: black;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-top: 2px solid black;
+    font-size: 14px;
+
+}
+
+.cart-item div * {
+    padding: 10px;
+}
+
+.cart-item div:nth-child(1) span {
+    /* color: red; */
+    display: block;
+    width: 100px;
+        white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* font-size: 16px; */
+
+}
+
+.cart-item div:nth-child(2) button {
+    width:30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+.cart-item div:nth-child(2) button:hover {
+    background-color: black;
+    color: white;
+}
+
+.cart-item div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.cart-total {
+    color: black;
+    background-color: goldenrod;
+    width: 100%;
+    padding-block: 25px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+
 
 .bestCard {
     display: flex;
@@ -442,12 +512,14 @@ background-color: rgb(229, 22, 22);
 #logPage {
     display: none;
     position: absolute;
-    margin-left: 81%;
-    margin-top: -7%;
+    /* margin-left: 81%;
+    margin-top: -7%; */
+    right: 20px;
     width: 190px;
     padding: 22px;
     background-color: #fff;
     text-align: center;
+    z-index: 60;
 }
 
 #logPage input {
